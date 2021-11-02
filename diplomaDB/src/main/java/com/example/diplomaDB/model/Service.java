@@ -2,6 +2,7 @@ package com.example.diplomaDB.model;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Service")
@@ -17,6 +18,9 @@ public class Service {
     private Long id;
     private String name;
     private Double price;
+
+    @ManyToMany(mappedBy = "mtmServices")
+    Set<User> mtmUsers;
 
 
     public Service(){}

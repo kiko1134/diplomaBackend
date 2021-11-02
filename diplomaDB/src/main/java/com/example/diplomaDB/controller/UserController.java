@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping(path = "v1/users")
 public class UserController {
 
     private UserService userService;
