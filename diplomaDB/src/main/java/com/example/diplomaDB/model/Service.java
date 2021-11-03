@@ -19,8 +19,8 @@ public class Service {
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "mtmServices")
-    Set<User> mtmUsers;
+//    @ManyToMany(mappedBy = "mtmServices")
+//    Set<User> mtmUsers;
 
 
     public Service(){}

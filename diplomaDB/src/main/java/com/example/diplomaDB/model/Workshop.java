@@ -29,6 +29,21 @@ public class Workshop {
         this.workshop_address = workshop_address;
     }
 
+    public Workshop(Long id, String email, String name, String phone_number, String workshop_address) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.phone_number = phone_number;
+        this.workshop_address = workshop_address;
+    }
+
+    public Workshop(String email, String name, String phone_number, String workshop_address) {
+        this.email = email;
+        this.name = name;
+        this.phone_number = phone_number;
+        this.workshop_address = workshop_address;
+    }
+
     public Workshop(String email, String name, String phone_number, String workshop_description, String workshop_address) {
         this.email = email;
         this.name = name;

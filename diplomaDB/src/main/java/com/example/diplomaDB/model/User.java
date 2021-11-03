@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 public class User {
     @Id
     @SequenceGenerator(
@@ -20,12 +20,12 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_service",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_id"))
-    Set<Service> mtmServices;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "user_service",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "service_id"))
+//    Set<Service> mtmServices;
 
     public User() {
     }
