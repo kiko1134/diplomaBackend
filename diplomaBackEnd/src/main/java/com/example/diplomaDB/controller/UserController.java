@@ -2,7 +2,7 @@ package com.example.diplomaDB.controller;
 
 
 import com.example.diplomaDB.model.User;
-import com.example.diplomaDB.service.UserService;
+import com.example.diplomaDB.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +12,10 @@ import java.util.List;
 @RequestMapping(path = "v1/users")
 public class UserController {
 
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 

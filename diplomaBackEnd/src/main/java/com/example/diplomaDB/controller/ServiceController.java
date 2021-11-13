@@ -1,7 +1,7 @@
 package com.example.diplomaDB.controller;
 
 import com.example.diplomaDB.model.Service;
-import com.example.diplomaDB.service.ServiceService;
+import com.example.diplomaDB.service.impl.ServiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "v1/service")
 public class ServiceController {
-    private ServiceService serviceService;
+    private ServiceServiceImpl serviceService;
 
     @Autowired
-    public ServiceController(ServiceService serviceService) {
+    public ServiceController(ServiceServiceImpl serviceService) {
         this.serviceService = serviceService;
     }
 
