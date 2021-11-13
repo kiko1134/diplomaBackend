@@ -1,4 +1,4 @@
-package com.example.diplomaDB;
+package kris.diploma.diplomaDB;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

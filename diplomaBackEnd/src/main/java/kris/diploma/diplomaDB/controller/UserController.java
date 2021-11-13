@@ -1,8 +1,8 @@
-package com.example.diplomaDB.controller;
+package kris.diploma.diplomaDB.controller;
 
 
-import com.example.diplomaDB.model.User;
-import com.example.diplomaDB.service.impl.UserServiceImpl;
+import kris.diploma.diplomaDB.model.User;
+import kris.diploma.diplomaDB.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

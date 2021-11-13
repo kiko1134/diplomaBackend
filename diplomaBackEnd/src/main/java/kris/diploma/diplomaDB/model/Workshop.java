@@ -1,4 +1,4 @@
-package com.example.diplomaDB.model;
+package kris.diploma.diplomaDB.model;
 
 import javax.persistence.*;
 

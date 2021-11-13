@@ -1,8 +1,8 @@
-package com.example.diplomaDB.service;
+package kris.diploma.diplomaDB.service.impl;
 
-import com.example.diplomaDB.model.User;
-import com.example.diplomaDB.model.Workshop;
-import com.example.diplomaDB.repository.WorkshopRepository;
+import kris.diploma.diplomaDB.model.Workshop;
+import kris.diploma.diplomaDB.repository.WorkshopRepository;
+import kris.diploma.diplomaDB.service.WorkshopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class WorkshopServiceImpl implements WorkshopService{
+public class WorkshopServiceImpl implements WorkshopService {
 
     private final WorkshopRepository workshopRepository;
 

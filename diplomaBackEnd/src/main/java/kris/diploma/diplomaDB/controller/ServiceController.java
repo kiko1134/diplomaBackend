@@ -1,7 +1,7 @@
-package com.example.diplomaDB.controller;
+package kris.diploma.diplomaDB.controller;
 
-import com.example.diplomaDB.model.Service;
-import com.example.diplomaDB.service.impl.ServiceServiceImpl;
+import kris.diploma.diplomaDB.model.Service;
+import kris.diploma.diplomaDB.service.impl.ServiceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

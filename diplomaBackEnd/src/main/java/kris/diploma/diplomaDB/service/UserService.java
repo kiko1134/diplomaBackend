@@ -1,6 +1,6 @@
-package com.example.diplomaDB.service;
+package kris.diploma.diplomaDB.service;
 
-import com.example.diplomaDB.model.User;
+import kris.diploma.diplomaDB.model.User;
 
 import java.util.List;
 

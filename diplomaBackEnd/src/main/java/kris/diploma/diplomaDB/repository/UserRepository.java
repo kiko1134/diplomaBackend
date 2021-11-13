@@ -1,6 +1,6 @@
-package com.example.diplomaDB.repository;
+package kris.diploma.diplomaDB.repository;
 
-import com.example.diplomaDB.model.User;
+import kris.diploma.diplomaDB.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

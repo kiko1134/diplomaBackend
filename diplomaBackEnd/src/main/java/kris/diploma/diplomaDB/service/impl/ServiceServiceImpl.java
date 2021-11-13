@@ -1,8 +1,8 @@
-package com.example.diplomaDB.service.impl;
+package kris.diploma.diplomaDB.service.impl;
 
-import com.example.diplomaDB.model.Service;
-import com.example.diplomaDB.repository.ServiceRepository;
-import com.example.diplomaDB.service.ServiceService;
+import kris.diploma.diplomaDB.model.Service;
+import kris.diploma.diplomaDB.repository.ServiceRepository;
+import kris.diploma.diplomaDB.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
