@@ -15,13 +15,13 @@ create table User(\
     email varchar(50) not null,\
     password varchar(50) not null,\
 \
-)\
+);\
 \
 create table Workshop(\
     id int not null primary key auto_increment,\
     username varchar(50) not null\
 \
-)\
+);\
 \
 create table Service(\
     id int not null primary key auto_increment,\
@@ -36,9 +36,8 @@ create table Workshop_Service(\
     service_id int not null,\
     foreign key(workshop_id) references Workshop(id),\
     foreign key(service_id) references Service(id),\
-    unique(user_id,service_id),\
-    price double not null,\
-)\
+    unique(user_id,service_id)\
+);\
 \
 \
 create table User_Service(\
@@ -48,4 +47,5 @@ create table User_Service(\
     service_id int not null,\
     foreign key(service_id) references Service(id),\
     unique(user_id,service_id)\
-);}
+    favorite boolean
+);
