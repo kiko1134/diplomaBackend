@@ -1,6 +1,7 @@
 package kris.diploma.diplomaDB.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Workshop")
@@ -19,6 +20,14 @@ public class Workshop {
     private String phone_number;
     private String workshop_description;
     private String workshop_address;
+
+    @ManyToMany
+    @JoinTable(
+            name = "workshop_services",
+            joinColumns = @JoinColumn(name = "workshop_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id"))
+    Set<Service> mtmServices;
+
 
     public Workshop(Long id, String email, String name, String phone_number, String workshop_description, String workshop_address) {
         this.id = id;

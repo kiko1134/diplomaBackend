@@ -20,12 +20,8 @@ public class User {
     private String email;
     private String password;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "user_service",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "service_id"))
-//    Set<Service> mtmServices;
+    @OneToMany(mappedBy = "user")
+    Set<FavoriteService> favoriteServices;
 
     public User() {
     }

@@ -19,9 +19,11 @@ public class Service {
     private String name;
     private Double price;
 
-//    @ManyToMany(mappedBy = "mtmServices")
-//    Set<User> mtmUsers;
+    @OneToMany(mappedBy = "service")
+    Set<FavoriteService> favoriteServices;
 
+    @ManyToMany(mappedBy = "mtmServices")
+    Set<Workshop> mtmWorkshops;
 
     public Service(){}
 
