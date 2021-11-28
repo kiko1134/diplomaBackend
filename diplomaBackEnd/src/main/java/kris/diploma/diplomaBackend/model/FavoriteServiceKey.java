@@ -1,4 +1,4 @@
-package kris.diploma.diplomaDB.model;
+package kris.diploma.diplomaBackend.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

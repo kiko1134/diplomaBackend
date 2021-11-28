@@ -1,6 +1,6 @@
-package kris.diploma.diplomaDB.repository;
+package kris.diploma.diplomaBackend.repository;
 
-import kris.diploma.diplomaDB.model.Workshop;
+import kris.diploma.diplomaBackend.model.Workshop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

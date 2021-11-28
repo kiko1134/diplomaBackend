@@ -1,6 +1,6 @@
-package kris.diploma.diplomaDB.service;
+package kris.diploma.diplomaBackend.service;
 
-import kris.diploma.diplomaDB.model.Service;
+import kris.diploma.diplomaBackend.model.Service;
 
 import java.util.List;
 

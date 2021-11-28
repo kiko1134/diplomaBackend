@@ -1,12 +1,13 @@
-package kris.diploma.diplomaDB.controller;
+package kris.diploma.diplomaBackend.controller;
 
 
-import kris.diploma.diplomaDB.model.Workshop;
-import kris.diploma.diplomaDB.service.impl.WorkshopServiceImpl;
+import kris.diploma.diplomaBackend.model.Workshop;
+import kris.diploma.diplomaBackend.service.impl.WorkshopServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "v1/workshop")

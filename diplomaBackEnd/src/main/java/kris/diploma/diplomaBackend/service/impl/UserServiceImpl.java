@@ -1,8 +1,8 @@
-package kris.diploma.diplomaDB.service.impl;
+package kris.diploma.diplomaBackend.service.impl;
 
-import kris.diploma.diplomaDB.model.User;
-import kris.diploma.diplomaDB.repository.UserRepository;
-import kris.diploma.diplomaDB.service.UserService;
+import kris.diploma.diplomaBackend.model.User;
+import kris.diploma.diplomaBackend.repository.UserRepository;
+import kris.diploma.diplomaBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

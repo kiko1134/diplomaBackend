@@ -1,4 +1,4 @@
-package kris.diploma.diplomaDB.model;
+package kris.diploma.diplomaBackend.model;
 
 
 import javax.persistence.*;
@@ -22,10 +22,11 @@ public class Service {
     @OneToMany(mappedBy = "service")
     Set<FavoriteService> favoriteServices;
 
-    @ManyToMany(mappedBy = "mtmServices")
-    Set<Workshop> mtmWorkshops;
+    @ManyToMany(mappedBy = "services")
+    Set<Workshop> workshops;
 
-    public Service(){}
+    public Service() {
+    }
 
     public Service(Long id, String name, Double price) {
         this.id = id;

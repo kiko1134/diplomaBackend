@@ -1,8 +1,8 @@
-package kris.diploma.diplomaDB.service.impl;
+package kris.diploma.diplomaBackend.service.impl;
 
-import kris.diploma.diplomaDB.model.Workshop;
-import kris.diploma.diplomaDB.repository.WorkshopRepository;
-import kris.diploma.diplomaDB.service.WorkshopService;
+import kris.diploma.diplomaBackend.model.Workshop;
+import kris.diploma.diplomaBackend.repository.WorkshopRepository;
+import kris.diploma.diplomaBackend.service.WorkshopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

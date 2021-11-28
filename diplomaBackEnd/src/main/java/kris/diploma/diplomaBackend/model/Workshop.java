@@ -1,4 +1,4 @@
-package kris.diploma.diplomaDB.model;
+package kris.diploma.diplomaBackend.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -26,7 +26,7 @@ public class Workshop {
             name = "workshop_services",
             joinColumns = @JoinColumn(name = "workshop_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
-    Set<Service> mtmServices;
+    Set<Service> services;
 
 
     public Workshop(Long id, String email, String name, String phone_number, String workshop_description, String workshop_address) {
