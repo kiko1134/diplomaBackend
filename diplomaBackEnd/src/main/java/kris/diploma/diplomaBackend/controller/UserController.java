@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping(path = "v1/users")
 public class UserController {
 
-    private UserServiceImpl userService;
+    final private UserServiceImpl userService;
 
     @Autowired
     public UserController(UserServiceImpl userService) {
@@ -25,10 +25,10 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public String registerNewUser(@RequestBody User user) {
         userService.addNewUser(user);
-        return "User" + user.getName()+"registerd successfully";
+        return "User" + user.getName()+"registered successfully";
     }
 
     @DeleteMapping(path = "{user_id}")

@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     @Autowired
@@ -63,5 +63,4 @@ public class UserServiceImpl implements UserService {
             user.setPassword(password);
         }
     }
-
 }
