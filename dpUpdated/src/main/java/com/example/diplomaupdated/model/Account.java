@@ -11,28 +11,28 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "register")
-public class Register {
+@Table(name = "account")
+public class Account {
     @Id
     @SequenceGenerator(
-            name = "register_sequence",
-            sequenceName = "register_sequence",
+            name = "account_sequence",
+            sequenceName = "account_sequence",
             allocationSize = 1
     )
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "register_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_sequence")
     private Long id;
     private String name;
     private String email;
     private String password;
 
     @ManyToOne()
-    @JoinColumn(name = "role_id")
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @OneToOne(mappedBy = "register")
+    @OneToOne(mappedBy = "account")
     private User user;
 
-    @OneToOne(mappedBy = "register")
+    @OneToOne(mappedBy = "account")
     private Workshop workshop;
 }

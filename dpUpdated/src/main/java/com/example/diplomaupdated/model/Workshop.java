@@ -30,8 +30,8 @@ public class Workshop {
     private String workshop_address;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "register_id", referencedColumnName = "id")
-    private Register register;
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
     @OneToMany(mappedBy = "workshop")
     private Set<Service> services = new HashSet<>();

@@ -1,11 +1,11 @@
 package com.example.diplomaupdated.repo;
 
-import com.example.diplomaupdated.model.Register;
+import com.example.diplomaupdated.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface RegisterRepo extends JpaRepository<Register,Long> {
+public interface RegisterRepo extends JpaRepository<Account,Long> {
 
-    Optional<Register> findRegisteredByName(String name);
+    Optional<Account> findRegisteredByName(String name);
 }

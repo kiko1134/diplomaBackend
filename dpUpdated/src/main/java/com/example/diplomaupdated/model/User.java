@@ -26,8 +26,8 @@ public class User {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "register_id", referencedColumnName = "id")
-    private Register register;
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
 
 

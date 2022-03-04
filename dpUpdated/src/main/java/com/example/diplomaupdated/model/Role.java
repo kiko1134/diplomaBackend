@@ -24,7 +24,7 @@ public class Role {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "register")
-    private Set<User> register;
+    @OneToMany(mappedBy = "account")
+    private Set<User> account;
 
 }
