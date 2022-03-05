@@ -1,4 +1,7 @@
 package com.example.diplomaupdated.repo;
 
-public interface RoleRepo {
+import com.example.diplomaupdated.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface roleRepo extends JpaRepository<Role,Long> {
 }

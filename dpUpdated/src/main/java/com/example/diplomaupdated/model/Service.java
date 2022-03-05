@@ -27,10 +27,7 @@ public class Service {
     private String name;
     private Double price;
 
-    @ManyToMany(mappedBy = "mtmServices")
-    Set<User> mtmUsers;
+    @ManyToMany(mappedBy = "favoriteServices")
+    Set<User> user_favorites;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "workshop_id", referencedColumnName = "id")
-    private Workshop workshop;
 }

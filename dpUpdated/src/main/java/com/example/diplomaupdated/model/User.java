@@ -30,14 +30,12 @@ public class User {
     private Account account;
 
 
-
-
     @ManyToMany
     @JoinTable(
             name = "user_service",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
-    Set<Service> mtmServices = new HashSet<>();
+    Set<Service> favoriteServices = new HashSet<>();
 
 
 }
