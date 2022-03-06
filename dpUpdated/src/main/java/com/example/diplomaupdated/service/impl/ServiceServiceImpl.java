@@ -1,5 +1,6 @@
 package com.example.diplomaupdated.service.impl;
 
+import com.example.diplomaupdated.DTO.serviceDto;
 import com.example.diplomaupdated.model.Service;
 import com.example.diplomaupdated.repo.serviceRepo;
 import com.example.diplomaupdated.service.ServiceService;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
@@ -22,9 +24,13 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public void addNewService(Service service) {
-        if(serviceRepo.existsById(service.getId()))
-            throw new IllegalArgumentException("this service was already added");
+    public void addNewService(String serviceName) {
+
+        Service service = serviceRepo.existsByName(serviceName)
+                .orElseThrow(() -> new IllegalStateException("this service was already added"));
+
+        Service currentService = new Service();
+        currentService.setName(serviceName);
         serviceRepo.save(service);
     }
 

@@ -4,6 +4,7 @@ import com.example.diplomaupdated.DTO.userDto;
 import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.model.User;
 import com.example.diplomaupdated.repo.accountRepo;
+import com.example.diplomaupdated.repo.serviceRepo;
 import com.example.diplomaupdated.repo.userRepo;
 import com.example.diplomaupdated.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final userRepo userRepo;
     private PasswordEncoder passwordEncoder;
     private final accountRepo accountRepo;
+    private final serviceRepo serviceRepo;
 
 
     @Override
@@ -97,5 +99,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (password != null && password.length() > 0 && !Objects.equals(user.getAccount().getPassword(), password)) {
             user.getAccount().setPassword(password);
         }
+    }
+
+    @Override
+    public void addFavoriteService(Long serviceId, Long userId) {
+        com.example.diplomaupdated.model.Service service = serviceRepo.findById(serviceId)
+                .orElseThrow(() -> new IllegalStateException("Service with id" + serviceId + "does not exist"));
+
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exist"));
+
+        Set<com.example.diplomaupdated.model.Service> favoriteServices = user.getFavoriteServices();
+        favoriteServices.add(service);
+        user.setFavoriteServices(favoriteServices);
     }
 }
