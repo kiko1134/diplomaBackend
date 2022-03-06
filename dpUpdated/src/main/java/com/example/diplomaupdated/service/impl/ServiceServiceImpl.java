@@ -38,14 +38,11 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public void updateService(Long serviceId, String name, Double price) {
+    public void updateService(Long serviceId, String name) {
         Service service = serviceRepo.findById(serviceId)
                 .orElseThrow(() -> new IllegalStateException("Service with id" + serviceId + "does not exist"));
 
         if(name != null && name.length() > 0 && !Objects.equals(service.getName(),name))
             service.setName(name);
-
-        if(price != null && price >0 && !Objects.equals(service.getPrice(),price))
-            service.setPrice(price);
     }
 }

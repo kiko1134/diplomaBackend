@@ -33,8 +33,6 @@ public class Workshop {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-//    @OneToMany(mappedBy = "workshop")
-//    private Set<Service> services = new HashSet<>();
-
-
+    @OneToMany(mappedBy = "workshop")
+    Set<WorkshopService> workshopService;
 }

@@ -6,15 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "service")
-public class Service {
-
+@Table(name = "workshop_service")
+public class WorkshopService {
     @Id
     @SequenceGenerator(
             name = "service_sequence",
@@ -24,11 +22,14 @@ public class Service {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_sequence")
     private Long id;
-    private String name;
 
-    @ManyToMany(mappedBy = "favoriteServices")
-    Set<User> userFavorites;
+    @ManyToOne
+    @JoinColumn(name = "workshop_id")
+    Workshop workshop;
 
-    @OneToMany(mappedBy = "service")
-    Set<WorkshopService> workshopService;
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    Service service;
+
+    private Double price;
 }
