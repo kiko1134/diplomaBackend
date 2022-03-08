@@ -10,6 +10,7 @@ import com.example.diplomaupdated.repo.workshopServiceRepo;
 import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Transactional
 public class WorkshopServiceImpl implements WorkshopService {

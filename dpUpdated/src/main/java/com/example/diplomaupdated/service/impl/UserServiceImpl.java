@@ -4,29 +4,35 @@ import com.example.diplomaupdated.DTO.userDto;
 import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.model.User;
 import com.example.diplomaupdated.repo.accountRepo;
+import com.example.diplomaupdated.repo.roleRepo;
 import com.example.diplomaupdated.repo.serviceRepo;
 import com.example.diplomaupdated.repo.userRepo;
 import com.example.diplomaupdated.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
 
-@Service
-@RequiredArgsConstructor
+@Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final userRepo userRepo;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final accountRepo accountRepo;
     private final serviceRepo serviceRepo;
+    private final com.example.diplomaupdated.repo.roleRepo roleRepo;
+
+
 
 
     @Override
@@ -54,7 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void addNewUser(userDto userDto) {
 
-        Optional<Account> accountByName = accountRepo.findAccountByName(userDto.getUsername());
+        Optional<Account> accountByName = accountRepo.findAccountByName(userDto.getName());
         Optional<Account> accountByEmail = accountRepo.findAccountByEmail(userDto.getEmail());
 
         if (accountByName.isPresent() || accountByEmail.isPresent())
@@ -62,9 +68,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         Account currAccount = new Account();
 
-        currAccount.setName(userDto.getUsername());
+        currAccount.setName(userDto.getName());
         currAccount.setEmail(userDto.getEmail());
         currAccount.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        currAccount.setRole(roleRepo.findRoleByName(userDto.getRole()));
 
         accountRepo.save(currAccount);
 

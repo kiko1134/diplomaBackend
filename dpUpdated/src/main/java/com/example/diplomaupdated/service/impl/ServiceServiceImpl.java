@@ -5,12 +5,14 @@ import com.example.diplomaupdated.model.Service;
 import com.example.diplomaupdated.repo.serviceRepo;
 import com.example.diplomaupdated.service.ServiceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Component
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
 @Transactional
