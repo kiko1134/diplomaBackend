@@ -4,10 +4,10 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 @Data
-public class workshopDto {
+public class WorkshopDto {
 
     @NotNull
-    private String username;
+    private String name;
 
     @NotNull
     private String email;
@@ -21,6 +21,10 @@ public class workshopDto {
     @NotNull
     private String workshop_address;
 
+    @NotNull
     private String workshop_description;
+
+    @NotNull
+    private String role;
 
 }

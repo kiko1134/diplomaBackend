@@ -4,7 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 @Data
-public class serviceDto{
+public class ServiceDto {
     @NotNull
     private String name;
 

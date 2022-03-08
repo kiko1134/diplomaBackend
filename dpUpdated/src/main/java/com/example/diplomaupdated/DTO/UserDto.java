@@ -4,7 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 
 @Data
-public class userDto {
+public class UserDto {
 
     @NotNull
     private String name;

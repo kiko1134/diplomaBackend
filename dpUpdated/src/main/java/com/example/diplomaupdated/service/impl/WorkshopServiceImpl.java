@@ -1,17 +1,14 @@
 package com.example.diplomaupdated.service.impl;
 
-import com.example.diplomaupdated.DTO.workshopDto;
+import com.example.diplomaupdated.DTO.WorkshopDto;
 import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.model.Workshop;
-import com.example.diplomaupdated.repo.accountRepo;
-import com.example.diplomaupdated.repo.serviceRepo;
-import com.example.diplomaupdated.repo.workshopRepo;
-import com.example.diplomaupdated.repo.workshopServiceRepo;
+import com.example.diplomaupdated.repo.*;
 import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,15 +16,16 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
 public class WorkshopServiceImpl implements WorkshopService {
 
-    private final workshopRepo workshopRepo;
-    private PasswordEncoder passwordEncoder;
-    private final accountRepo accountRepo;
-    private final serviceRepo serviceRepo;
-    private final com.example.diplomaupdated.repo.workshopServiceRepo workshopServiceRepo;
+    private final WorkshopRepo workshopRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final AccountRepo accountRepo;
+    private final ServiceRepo serviceRepo;
+    private final WorkshopServiceRepo workshopServiceRepo;
+    private final RoleRepo roleRepo;
 
     @Override
     public List<Workshop> getWorkshops() {
@@ -35,17 +33,18 @@ public class WorkshopServiceImpl implements WorkshopService {
     }
 
     @Override
-    public void registerNewWorkshop(workshopDto workshopDto) {
-        Optional<Account> accountByName = accountRepo.findAccountByName(workshopDto.getUsername());
+    public void registerNewWorkshop(WorkshopDto workshopDto) {
+        Optional<Account> accountByName = accountRepo.findAccountByName(workshopDto.getName());
         Optional<Account> accountByEmail = accountRepo.findAccountByEmail(workshopDto.getEmail());
 
         if (accountByName.isPresent() || accountByEmail.isPresent())
             throw new IllegalArgumentException("Email or username already in use");
 
         Account currAccount = new Account();
-        currAccount.setName(workshopDto.getUsername());
+        currAccount.setName(workshopDto.getName());
         currAccount.setEmail(workshopDto.getEmail());
         currAccount.setPassword(passwordEncoder.encode(workshopDto.getPassword()));
+        currAccount.setRole(roleRepo.findRoleByName(workshopDto.getRole()));
 
         accountRepo.save(currAccount);
 

@@ -1,12 +1,12 @@
 package com.example.diplomaupdated.service.impl;
 
-import com.example.diplomaupdated.DTO.userDto;
+import com.example.diplomaupdated.DTO.UserDto;
 import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.model.User;
-import com.example.diplomaupdated.repo.accountRepo;
-import com.example.diplomaupdated.repo.roleRepo;
-import com.example.diplomaupdated.repo.serviceRepo;
-import com.example.diplomaupdated.repo.userRepo;
+import com.example.diplomaupdated.repo.AccountRepo;
+import com.example.diplomaupdated.repo.RoleRepo;
+import com.example.diplomaupdated.repo.ServiceRepo;
+import com.example.diplomaupdated.repo.UserRepo;
 import com.example.diplomaupdated.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +16,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
 
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+    @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final userRepo userRepo;
+    private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
-    private final accountRepo accountRepo;
-    private final serviceRepo serviceRepo;
-    private final com.example.diplomaupdated.repo.roleRepo roleRepo;
+    private final AccountRepo accountRepo;
+    private final ServiceRepo serviceRepo;
+    private final RoleRepo roleRepo;
 
 
 
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addNewUser(userDto userDto) {
+    public void addNewUser(UserDto userDto) {
 
         Optional<Account> accountByName = accountRepo.findAccountByName(userDto.getName());
         Optional<Account> accountByEmail = accountRepo.findAccountByEmail(userDto.getEmail());

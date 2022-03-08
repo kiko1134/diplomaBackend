@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface serviceRepo extends JpaRepository<Service,Long> {
+
+public interface ServiceRepo extends JpaRepository<Service,Long> {
     Optional<Service> existsByName(String name);
 }

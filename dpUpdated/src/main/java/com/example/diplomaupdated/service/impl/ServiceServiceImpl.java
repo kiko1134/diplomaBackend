@@ -1,24 +1,22 @@
 package com.example.diplomaupdated.service.impl;
 
-import com.example.diplomaupdated.DTO.serviceDto;
 import com.example.diplomaupdated.model.Service;
-import com.example.diplomaupdated.repo.serviceRepo;
+import com.example.diplomaupdated.repo.ServiceRepo;
 import com.example.diplomaupdated.service.ServiceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Component
-@org.springframework.stereotype.Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
 public class ServiceServiceImpl implements ServiceService {
 
-    private final serviceRepo serviceRepo;
+    private final ServiceRepo serviceRepo;
 
     @Override
     public List<Service> getServices() {
