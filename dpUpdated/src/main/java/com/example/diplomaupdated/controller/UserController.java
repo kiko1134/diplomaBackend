@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "v1/users")
@@ -27,6 +26,9 @@ public class UserController {
 
     @GetMapping
     public List<User> getUsers(){return userService.getUsers();}
+
+//    @GetMapping
+//    public User getUserById(Long id){return new User();}
 
     @PostMapping
     public void registerNewUser(@RequestBody UserDto userDto){

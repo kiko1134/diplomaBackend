@@ -10,10 +10,6 @@ import com.example.diplomaupdated.repo.UserRepo;
 import com.example.diplomaupdated.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -21,35 +17,15 @@ import javax.transaction.Transactional;
 import java.util.*;
 
 @Component
-    @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final AccountRepo accountRepo;
     private final ServiceRepo serviceRepo;
     private final RoleRepo roleRepo;
-
-
-
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Account account = accountRepo.findAccountByName(username)
-                .orElseThrow(() -> new IllegalStateException("user not found"));
-
-
-        User user = userRepo.findUserByAccountId(account.getId());
-
-        Collection<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
-        simpleGrantedAuthorities.add(new SimpleGrantedAuthority(user.getAccount().getRole().getName()));
-
-        return new org.springframework.security.core.userdetails.User(user.getAccount().getName(),
-                user.getAccount().getPassword(), simpleGrantedAuthorities);
-    }
-
 
     @Override
     public List<User> getUsers() {
