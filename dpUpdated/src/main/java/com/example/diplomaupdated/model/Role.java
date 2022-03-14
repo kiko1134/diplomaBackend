@@ -1,5 +1,6 @@
 package com.example.diplomaupdated.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Role {
     private Long id;
     private String name;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "account")
     private Set<User> account;
 
