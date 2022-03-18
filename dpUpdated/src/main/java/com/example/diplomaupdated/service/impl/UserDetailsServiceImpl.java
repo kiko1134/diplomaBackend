@@ -30,12 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new IllegalStateException("user not found"));
 
 
-        User user = userRepo.findUserByAccountId(account.getId());
-
-        Collection<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
-        simpleGrantedAuthorities.add(new SimpleGrantedAuthority(user.getAccount().getRole().getName()));
-
-        return new org.springframework.security.core.userdetails.User(user.getAccount().getName(),
-                user.getAccount().getPassword(), simpleGrantedAuthorities);
+        return account;
     }
 }

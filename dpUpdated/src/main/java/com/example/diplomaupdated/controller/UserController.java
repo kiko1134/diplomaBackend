@@ -30,10 +30,7 @@ public class UserController {
 //    @GetMapping
 //    public User getUserById(Long id){return new User();}
 
-    @PostMapping
-    public void registerNewUser(@RequestBody UserDto userDto){
-        userService.addNewUser(userDto);
-    }
+
 
     @DeleteMapping(path = "{user_id}")
     public void deleteUser(@PathVariable("user_id") Long user_id){userService.deleteUser(user_id);}

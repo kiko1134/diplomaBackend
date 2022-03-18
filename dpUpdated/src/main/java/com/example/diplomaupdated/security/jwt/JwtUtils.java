@@ -1,6 +1,6 @@
 package com.example.diplomaupdated.security.jwt;
 
-import com.example.diplomaupdated.service.impl.UserDetailsImpl;
+import com.example.diplomaupdated.model.Account;
 import com.sun.xml.txw2.IllegalSignatureException;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
@@ -15,7 +15,7 @@ public class JwtUtils {
     private int expiration = 86400000;
 
     public String generateJwtToken(Authentication authentication) {
-        UserDetailsImpl principal = (UserDetailsImpl) authentication.getPrincipal();
+        Account principal = (Account) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .setIssuedAt(new Date())

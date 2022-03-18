@@ -1,12 +1,13 @@
 package com.example.diplomaupdated.controller;
 
 
-import com.example.diplomaupdated.DTO.AuthenticationDto;
-import com.example.diplomaupdated.DTO.JwtResponse;
+import com.example.diplomaupdated.DTO.*;
+import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.repo.RoleRepo;
 import com.example.diplomaupdated.repo.UserRepo;
 import com.example.diplomaupdated.security.jwt.JwtUtils;
-import com.example.diplomaupdated.service.impl.UserDetailsImpl;
+import com.example.diplomaupdated.service.UserService;
+import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +22,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping(path = "v1/signin")
-public class SignIn {
+@RequestMapping(path = "v1/public")
+public class AuthenticateController {
 
     private final AuthenticationManager AuthenticationManager;
     private final UserRepo userRepo;
+    private final UserService userService;
     private final RoleRepo roleRepo;
-    private JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
+    private final WorkshopService workshopService;
 
-    @PostMapping
+    @PostMapping(path = "/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationDto loginRequest){
         Authentication authentication = AuthenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -37,8 +40,27 @@ public class SignIn {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponse(jwt,userDetails.getUsername(), userDetails.getEmail(),userDetails.getAuthorities()));
+        Account userDetails = (Account) authentication.getPrincipal();
+        if(userDetails.getRole().getName().equals("USER"))
+            return ResponseEntity.ok(new UserResponseDto(jwt,userDetails.getUsername(), userDetails.getEmail(),userDetails.getAuthorities()));
+
+        return ResponseEntity.ok(new WorkshopResponseDto(jwt,userDetails.getUsername(),userDetails.getEmail(),
+                userDetails.getWorkshop().getPhone_number(),userDetails.getWorkshop().getWorkshop_address(),
+                userDetails.getWorkshop().getWorkshop_description(),userDetails.getAuthorities()));
     }
+
+    @PostMapping(path = "/register_user")
+    public void registerNewUser(@RequestBody UserDto userDto){
+        userService.addNewUser(userDto);
+    }
+
+    @PostMapping(path = "/register_workshop")
+    public void registerWorkshop(@RequestBody WorkshopDto workshopDto){
+        workshopService.registerNewWorkshop(workshopDto);
+    }
+
+
+
+
 
 }
