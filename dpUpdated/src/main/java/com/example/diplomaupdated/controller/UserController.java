@@ -1,6 +1,7 @@
 package com.example.diplomaupdated.controller;
 
 
+import com.example.diplomaupdated.DTO.RequestCustomerDto;
 import com.example.diplomaupdated.DTO.UserDto;
 import com.example.diplomaupdated.model.User;
 import com.example.diplomaupdated.service.RoleService;
@@ -36,11 +37,8 @@ public class UserController {
     public void deleteUser(@PathVariable("user_id") Long user_id){userService.deleteUser(user_id);}
 
     @PutMapping(path = "{user_id}")
-    public void updateUser(@PathVariable("user_id") Long user_id,
-                           @RequestParam(required = false) String name,
-                           @RequestParam(required = false) String email,
-                           @RequestParam(required = false) String password){
-        userService.updateUser(user_id,name,email,password);
+    public void updateUser(@PathVariable("user_id") Long user_id, @RequestBody RequestCustomerDto user){
+        userService.updateUser(user_id,user.getEmail());
     }
 
     @PostMapping(path = "role/{role}")

@@ -65,21 +65,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long userId, String name, String email, String password) {
+    public void updateUser(Long userId,String email) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exist"));
 
-        if (name != null && name.length() > 0 && !Objects.equals(user.getAccount().getName(), name))
-            user.getAccount().setName(name);
-
         if (email != null && email.length() > 0 && !Objects.equals(user.getAccount().getEmail(), email)) {
-            Account currentUserAccount = accountRepo.findAccountByEmail(email)
-                    .orElseThrow(() -> new IllegalStateException("Email taken"));
+            Optional<Account> currentUserAccount = accountRepo.findAccountByEmail(email);
+            if(currentUserAccount.isPresent())
+                throw new IllegalStateException("Email taken");
             user.getAccount().setEmail(email);
-        }
-
-        if (password != null && password.length() > 0 && !Objects.equals(user.getAccount().getPassword(), password)) {
-            user.getAccount().setPassword(password);
         }
     }
 

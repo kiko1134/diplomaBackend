@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -26,12 +27,14 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public void addNewService(String serviceName) {
 
-        Service service = serviceRepo.existsByName(serviceName)
-                .orElseThrow(() -> new IllegalStateException("this service was already added"));
+        boolean service = serviceRepo.existsByName(serviceName);
+        System.out.println(serviceName);
+        if(service)
+            throw new IllegalStateException("this service is already exists");
 
         Service currentService = new Service();
         currentService.setName(serviceName);
-        serviceRepo.save(service);
+        serviceRepo.save(currentService);
     }
 
     @Override
@@ -50,5 +53,13 @@ public class ServiceServiceImpl implements ServiceService {
 
         if(name != null && name.length() > 0 && !Objects.equals(service.getName(),name))
             service.setName(name);
+    }
+
+    @Override
+    public String getServiceNameById(Long serviceId) {
+        Service service = serviceRepo.findServiceById(serviceId)
+                .orElseThrow(() -> new IllegalStateException("Service with id" + serviceId + "does not exist"));
+
+        return service.getName();
     }
 }

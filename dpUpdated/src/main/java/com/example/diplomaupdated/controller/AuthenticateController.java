@@ -42,9 +42,10 @@ public class AuthenticateController {
 
         Account userDetails = (Account) authentication.getPrincipal();
         if(userDetails.getRole().getName().equals("USER"))
-            return ResponseEntity.ok(new UserResponseDto(jwt,userDetails.getUsername(), userDetails.getEmail(),userDetails.getAuthorities()));
+            return ResponseEntity.ok(new UserResponseDto(userDetails.getUser().getId(),jwt,
+                    userDetails.getUsername(), userDetails.getEmail(),userDetails.getAuthorities()));
 
-        return ResponseEntity.ok(new WorkshopResponseDto(jwt,userDetails.getUsername(),userDetails.getEmail(),
+        return ResponseEntity.ok(new WorkshopResponseDto(userDetails.getWorkshop().getId(),jwt,userDetails.getUsername(),userDetails.getEmail(),
                 userDetails.getWorkshop().getPhone_number(),userDetails.getWorkshop().getWorkshop_address(),
                 userDetails.getWorkshop().getWorkshop_description(),userDetails.getAuthorities()));
     }

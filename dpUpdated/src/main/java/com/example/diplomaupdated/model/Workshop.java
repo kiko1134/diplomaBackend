@@ -1,6 +1,7 @@
 package com.example.diplomaupdated.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,7 @@ public class Workshop {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "workshop")
     Set<WorkshopService> workshopService;
 }

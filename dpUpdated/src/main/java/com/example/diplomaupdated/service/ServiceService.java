@@ -9,4 +9,5 @@ public interface ServiceService {
     void addNewService(String serviceDto);
     void deleteService(Long serviceId);
     void updateService(Long serviceId,String name);
+    String getServiceNameById(Long serviceId);
 }

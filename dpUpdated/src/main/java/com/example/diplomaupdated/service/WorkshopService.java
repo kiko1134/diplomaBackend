@@ -9,6 +9,7 @@ public interface WorkshopService {
     List<Workshop> getWorkshops();
     void registerNewWorkshop(WorkshopDto workshopDto);
     void deleteWorkshop(Long workshopId);
-    void updateWorkshop(Long id, String name, String email, String password, String workshop_address, String phone_number, String workshop_description);
-    void addServiceToWorkshop(Long workshopId, Long serviceId, Double price);
+    void updateWorkshop(Long id, String name, String email, String workshop_address, String phone_number, String workshop_description);
+    void addServiceToWorkshop(Long workshopId, String serviceId, Double price);
+    List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServicesServiceId(String serviceId);
 }

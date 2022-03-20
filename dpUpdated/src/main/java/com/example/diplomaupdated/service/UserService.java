@@ -9,7 +9,7 @@ public interface UserService {
     List<User> getUsers();
     void addNewUser(UserDto userDto);
     void deleteUser(Long userId);
-    void updateUser(Long userId, String name, String email, String password);
+    void updateUser(Long userId,String email);
     void addFavoriteService(Long serviceId, Long user_id);
 
 }

@@ -1,6 +1,8 @@
 package com.example.diplomaupdated.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,7 @@ public class Service {
     @ManyToMany(mappedBy = "favoriteServices")
     Set<User> userFavorites;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "service")
     Set<WorkshopService> workshopService;
 }

@@ -9,6 +9,8 @@ import java.util.Collection;
 @Data
 public class WorkshopResponseDto {
     @NotNull
+    private Long id;
+    @NotNull
     private String token;
     @NotNull
     private String username;
@@ -23,8 +25,9 @@ public class WorkshopResponseDto {
     @NotNull
     Collection<? extends GrantedAuthority> authorities;
 
-    public WorkshopResponseDto(String token, String username, String email, String phone_number, String workshop_address,
+    public WorkshopResponseDto(Long id,String token, String username, String email, String phone_number, String workshop_address,
                                String workshop_description, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.token = token;
         this.username = username;
         this.email = email;

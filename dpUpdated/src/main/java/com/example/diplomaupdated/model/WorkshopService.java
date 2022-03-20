@@ -1,6 +1,8 @@
 package com.example.diplomaupdated.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class WorkshopService {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_sequence")
     private Long id;
+
 
     @ManyToOne
     @JoinColumn(name = "workshop_id")
