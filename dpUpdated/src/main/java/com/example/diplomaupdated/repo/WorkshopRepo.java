@@ -3,7 +3,9 @@ package com.example.diplomaupdated.repo;
 import com.example.diplomaupdated.model.Workshop;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WorkshopRepo extends JpaRepository<Workshop,Long> {
+import java.util.Optional;
 
+public interface WorkshopRepo extends JpaRepository<Workshop,Long> {
+//    Optional<Workshop> findWorkshopBy(String name);
 
 }

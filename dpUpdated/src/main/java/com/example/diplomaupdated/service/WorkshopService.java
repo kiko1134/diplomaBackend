@@ -12,4 +12,5 @@ public interface WorkshopService {
     void updateWorkshop(Long id, String name, String email, String workshop_address, String phone_number, String workshop_description);
     void addServiceToWorkshop(Long workshopId, String serviceId, Double price);
     List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServicesServiceId(String serviceId);
+    List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServicesWorkshopName(String serviceName);
 }

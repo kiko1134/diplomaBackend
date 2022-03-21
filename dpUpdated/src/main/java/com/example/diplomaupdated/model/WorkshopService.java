@@ -3,14 +3,15 @@ package com.example.diplomaupdated.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "workshop_service")
@@ -35,4 +36,9 @@ public class WorkshopService {
     Service service;
 
     private Double price;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "favoriteServices")
+    Set<User> userFavorites;
+
 }

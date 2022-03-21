@@ -103,6 +103,13 @@ public class WorkshopServiceImpl implements WorkshopService {
         com.example.diplomaupdated.model.Service service = serviceRepo.findByName(serviceName)
                 .orElseThrow(() -> new IllegalStateException("Service " + serviceName + "does not exist"));
 
+        List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
+
+        for (com.example.diplomaupdated.model.WorkshopService obj: all){
+            if(obj.getService().getName().equals(serviceName) && obj.getWorkshop().getId().equals(workshopId))
+                throw new IllegalArgumentException("This service was previously added");
+        }
+
         com.example.diplomaupdated.model.WorkshopService workshopService = new com.example.diplomaupdated.model.WorkshopService();
 
         workshopService.setWorkshop(workshop);
@@ -124,6 +131,23 @@ public class WorkshopServiceImpl implements WorkshopService {
         for(com.example.diplomaupdated.model.WorkshopService workshopService: all){
             if(workshopService.getService().getId().equals(Long.parseLong(serviceId)))
                 resultArr.add(workshopService);
+        }
+
+        return resultArr;
+    }
+
+    @Override
+    public List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServicesWorkshopName(String workshopName) {
+//        Workshop workshop = workshopRepo.findWorkshopBy(workshopName)
+//                .orElseThrow(() -> new IllegalStateException("Workshop " + workshopName + "does not exist"));
+
+        List<com.example.diplomaupdated.model.WorkshopService> resultArr = new ArrayList<>();
+
+        List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
+
+        for(com.example.diplomaupdated.model.WorkshopService obj: all){
+            if(obj.getWorkshop().getAccount().getName().equals(workshopName))
+                resultArr.add(obj);
         }
 
         return resultArr;

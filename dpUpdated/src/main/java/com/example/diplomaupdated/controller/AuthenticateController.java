@@ -6,6 +6,7 @@ import com.example.diplomaupdated.model.Account;
 import com.example.diplomaupdated.repo.RoleRepo;
 import com.example.diplomaupdated.repo.UserRepo;
 import com.example.diplomaupdated.security.jwt.JwtUtils;
+import com.example.diplomaupdated.service.RoleService;
 import com.example.diplomaupdated.service.UserService;
 import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -31,6 +29,7 @@ public class AuthenticateController {
     private final RoleRepo roleRepo;
     private final JwtUtils jwtUtils;
     private final WorkshopService workshopService;
+    private final RoleService roleService;
 
     @PostMapping(path = "/signin")
     public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationDto loginRequest){
@@ -50,15 +49,21 @@ public class AuthenticateController {
                 userDetails.getWorkshop().getWorkshop_description(),userDetails.getAuthorities()));
     }
 
-    @PostMapping(path = "/register_user")
+    @PostMapping(path = "/register-user")
     public void registerNewUser(@RequestBody UserDto userDto){
         userService.addNewUser(userDto);
     }
 
-    @PostMapping(path = "/register_workshop")
+    @PostMapping(path = "/register-workshop")
     public void registerWorkshop(@RequestBody WorkshopDto workshopDto){
         workshopService.registerNewWorkshop(workshopDto);
     }
+
+    @PostMapping("add-role/{role}")
+    public void addRole(@PathVariable String role){
+        roleService.addNewRole(role);
+    }
+
 
 
 

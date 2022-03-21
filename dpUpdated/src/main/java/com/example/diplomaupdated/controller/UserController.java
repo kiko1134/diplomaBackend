@@ -1,6 +1,7 @@
 package com.example.diplomaupdated.controller;
 
 
+import com.example.diplomaupdated.DTO.FavoriteServiceDto;
 import com.example.diplomaupdated.DTO.RequestCustomerDto;
 import com.example.diplomaupdated.DTO.UserDto;
 import com.example.diplomaupdated.model.User;
@@ -28,11 +29,6 @@ public class UserController {
     @GetMapping
     public List<User> getUsers(){return userService.getUsers();}
 
-//    @GetMapping
-//    public User getUserById(Long id){return new User();}
-
-
-
     @DeleteMapping(path = "{user_id}")
     public void deleteUser(@PathVariable("user_id") Long user_id){userService.deleteUser(user_id);}
 
@@ -41,13 +37,15 @@ public class UserController {
         userService.updateUser(user_id,user.getEmail());
     }
 
-    @PostMapping(path = "role/{role}")
-    public void addRole(@PathVariable String role){
-        roleService.addNewRole(role);
-    }
 
     @PostMapping(path = "role/delete/{role}")
     public void deleteRole(@PathVariable String role){
         roleService.deleteRole(role);
+    }
+
+    @PostMapping(path = "add-favorite-service")
+    public void addFavoriteService(@RequestBody FavoriteServiceDto favService){
+        userService.addFavoriteService(Long.parseLong(favService.getService_id()), Long.parseLong(favService.getWorkshop_id()),
+                Long.parseLong(favService.getUser_id()));
     }
 }

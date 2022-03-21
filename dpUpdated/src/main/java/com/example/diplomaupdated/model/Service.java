@@ -3,15 +3,16 @@ package com.example.diplomaupdated.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "service")
@@ -28,8 +29,8 @@ public class Service {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "favoriteServices")
-    Set<User> userFavorites;
+//    @ManyToMany(mappedBy = "favoriteServices")
+//    Set<User> userFavorites;
 
     @JsonIgnore
     @OneToMany(mappedBy = "service")

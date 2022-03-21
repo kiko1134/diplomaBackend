@@ -35,10 +35,10 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "user_service",
+            name = "favorite_service",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_id"))
-    Set<Service> favoriteServices = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "workshopservice_id"))
+    Set<WorkshopService> favoriteServices = new HashSet<>();
 
 
 }
