@@ -1,6 +1,7 @@
 package com.example.diplomaupdated.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,8 @@ public class User {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    @OneToMany(mappedBy = "user")
+    Set<Review> reviews;
 
     @ManyToMany
     @JoinTable(

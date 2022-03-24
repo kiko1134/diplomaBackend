@@ -65,13 +65,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long userId,String email) {
+    public void updateUser(Long userId, String email) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exist"));
 
         if (email != null && email.length() > 0 && !Objects.equals(user.getAccount().getEmail(), email)) {
             Optional<Account> currentUserAccount = accountRepo.findAccountByEmail(email);
-            if(currentUserAccount.isPresent())
+            if (currentUserAccount.isPresent())
                 throw new IllegalStateException("Email taken");
             user.getAccount().setEmail(email);
         }
@@ -91,8 +91,8 @@ public class UserServiceImpl implements UserService {
 
         List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
 
-        for (com.example.diplomaupdated.model.WorkshopService obj: all){
-            if(obj.getService().getId().equals(serviceId) && obj.getWorkshop().getId().equals(workshopId)){
+        for (com.example.diplomaupdated.model.WorkshopService obj : all) {
+            if (obj.getService().getId().equals(serviceId) && obj.getWorkshop().getId().equals(workshopId)) {
                 Set<com.example.diplomaupdated.model.WorkshopService> favoriteServices = user.getFavoriteServices();
                 favoriteServices.add(obj);
                 user.setFavoriteServices(favoriteServices);
@@ -101,5 +101,11 @@ public class UserServiceImpl implements UserService {
         }
 
 
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalStateException("does not exists user with id: "+ userId));
+        return user;
     }
 }

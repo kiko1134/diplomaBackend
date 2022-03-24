@@ -48,4 +48,9 @@ public class UserController {
         userService.addFavoriteService(Long.parseLong(favService.getService_id()), Long.parseLong(favService.getWorkshop_id()),
                 Long.parseLong(favService.getUser_id()));
     }
+
+    @GetMapping(path = "{user_id}")
+    public User getUserById(@PathVariable("user_id") String user_id){
+        return userService.getUserById(Long.parseLong(user_id));
+    }
 }

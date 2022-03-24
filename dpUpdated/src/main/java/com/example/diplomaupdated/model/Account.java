@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-@Data
-//@Getter
+//@Data
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor

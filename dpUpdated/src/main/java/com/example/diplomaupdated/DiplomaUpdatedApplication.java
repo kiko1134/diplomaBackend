@@ -12,9 +12,4 @@ public class DiplomaUpdatedApplication {
     public static void main(String[] args) {
         SpringApplication.run(DiplomaUpdatedApplication.class, args);
     }
-
-//    @Bean
-//    PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
 }

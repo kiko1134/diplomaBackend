@@ -1,6 +1,7 @@
 package com.example.diplomaupdated.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -32,10 +33,13 @@ public class Workshop {
     private String workshop_address;
 
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
+
+    @OneToMany(mappedBy = "workshop")
+    Set<Review> reviews;
 
     @JsonIgnore
     @OneToMany(mappedBy = "workshop")
