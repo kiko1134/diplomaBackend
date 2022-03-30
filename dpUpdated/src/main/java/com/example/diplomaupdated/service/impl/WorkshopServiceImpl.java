@@ -120,6 +120,23 @@ public class WorkshopServiceImpl implements WorkshopService {
     }
 
     @Override
+    public void updateServiceToWorkshop(Long workshopId, String serviceName, Double price) {
+        Workshop workshop = workshopRepo.findById(workshopId)
+                .orElseThrow(() -> new IllegalStateException("Workshop with id" + workshopId + "does not exist"));
+
+        com.example.diplomaupdated.model.Service service = serviceRepo.findByName(serviceName)
+                .orElseThrow(() -> new IllegalStateException("Service " + serviceName + "does not exist"));
+
+        List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
+
+        for (com.example.diplomaupdated.model.WorkshopService obj: all){
+            if(obj.getService().getName().equals(serviceName) && obj.getWorkshop().getId().equals(workshopId))
+                obj.setPrice(price);
+        }
+    }
+
+
+    @Override
     public List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServicesServiceId(String serviceId) {
         Service service = serviceRepo.findById(Long.parseLong(serviceId))
                 .orElseThrow(() -> new IllegalStateException("Service with id: " + serviceId + "does not exist"));

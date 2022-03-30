@@ -21,10 +21,9 @@ public class ReviewController {
 
     @PostMapping
     public void createReview(@RequestBody ReviewDto reviewDto){
-        System.out.println(reviewDto.getUser_id());
-        if(reviewDto.getUser_id().isEmpty())
-            reviewService.createReviewWorkshop(Long.parseLong(reviewDto.getWorkshop_id()),reviewDto.getContent());
+        if(reviewDto.getRole().equals("WORKSHOP"))
+            reviewService.createReviewWorkshop(Long.parseLong(reviewDto.getId()),reviewDto.getContent());
         else
-            reviewService.createReviewUser(Long.parseLong(reviewDto.getUser_id()),reviewDto.getContent());
+            reviewService.createReviewUser(Long.parseLong(reviewDto.getId()),reviewDto.getContent());
     }
 }

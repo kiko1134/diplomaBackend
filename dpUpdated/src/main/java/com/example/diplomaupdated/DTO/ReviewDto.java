@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class ReviewDto {
     @NotNull
-    private String user_id;
+    private String id;
     @NotNull
-    private String workshop_id;
+    private String role;
     @NotNull
     private String content;
 }

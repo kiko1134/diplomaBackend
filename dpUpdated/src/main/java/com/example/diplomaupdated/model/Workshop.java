@@ -13,7 +13,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "workshop")
@@ -33,11 +32,11 @@ public class Workshop {
     private String workshop_address;
 
 
-    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "workshop")
     Set<Review> reviews;
 

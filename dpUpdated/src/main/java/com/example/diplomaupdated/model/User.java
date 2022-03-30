@@ -33,6 +33,7 @@ public class User {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     Set<Review> reviews;
 

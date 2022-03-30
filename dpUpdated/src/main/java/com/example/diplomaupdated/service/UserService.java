@@ -11,5 +11,6 @@ public interface UserService {
     void deleteUser(Long userId);
     void updateUser(Long userId,String email);
     void addFavoriteService(Long serviceId,Long workshop_id, Long userId);
+    void deleteFavoriteService(Long serviceId,Long workshop_id, Long userId);
     User getUserById(Long userId);
 }

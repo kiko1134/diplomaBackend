@@ -10,11 +10,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
 
-@Component
+@Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -99,13 +100,36 @@ public class UserServiceImpl implements UserService {
             }
 
         }
-
-
     }
 
     @Override
+    public void deleteFavoriteService(Long serviceId, Long workshop_id, Long userId) {
+        Workshop workshop = workshopRepo.findById(workshop_id)
+                .orElseThrow(() -> new IllegalStateException("Workshop with id" + workshop_id + "does not exist"));
+
+        com.example.diplomaupdated.model.Service service = serviceRepo.findById(serviceId)
+                .orElseThrow(() -> new IllegalStateException("Service with id" + serviceId + "does not exist"));
+
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User with id" + userId + "does not exist"));
+
+        List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
+
+        for (com.example.diplomaupdated.model.WorkshopService obj : all) {
+            if (obj.getService().getId().equals(serviceId) && obj.getWorkshop().getId().equals(workshop_id)) {
+                Set<com.example.diplomaupdated.model.WorkshopService> favoriteServices = user.getFavoriteServices();
+                favoriteServices.remove(obj);
+                user.setFavoriteServices(favoriteServices);
+            }
+
+        }
+    }
+
+
+    @Override
     public User getUserById(Long userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalStateException("does not exists user with id: "+ userId));
+        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalStateException("does not exists user with id: " + userId));
         return user;
     }
+
 }

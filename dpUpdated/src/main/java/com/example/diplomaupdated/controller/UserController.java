@@ -38,7 +38,7 @@ public class UserController {
     }
 
 
-    @PostMapping(path = "role/delete/{role}")
+    @DeleteMapping(path = "role/delete/{role}")
     public void deleteRole(@PathVariable String role){
         roleService.deleteRole(role);
     }
@@ -46,6 +46,12 @@ public class UserController {
     @PostMapping(path = "add-favorite-service")
     public void addFavoriteService(@RequestBody FavoriteServiceDto favService){
         userService.addFavoriteService(Long.parseLong(favService.getService_id()), Long.parseLong(favService.getWorkshop_id()),
+                Long.parseLong(favService.getUser_id()));
+    }
+
+    @PostMapping(path = "delete-favorite-service")
+    public void deleteFavoriteService(@RequestBody FavoriteServiceDto favService){
+        userService.deleteFavoriteService(Long.parseLong(favService.getService_id()), Long.parseLong(favService.getWorkshop_id()),
                 Long.parseLong(favService.getUser_id()));
     }
 
