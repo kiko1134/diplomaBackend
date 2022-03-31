@@ -8,6 +8,7 @@ import com.example.diplomaupdated.repo.*;
 import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,11 @@ public class WorkshopServiceImpl implements WorkshopService {
     @Override
     public List<Workshop> getWorkshops() {
         return workshopRepo.findAll();
+    }
+
+    @Override
+    public List<com.example.diplomaupdated.model.WorkshopService> getWorkshopServices() {
+        return workshopServiceRepo.findAll();
     }
 
 
@@ -117,6 +123,33 @@ public class WorkshopServiceImpl implements WorkshopService {
         workshopService.setPrice(price);
 
         workshopServiceRepo.save(workshopService);
+    }
+
+    @Override
+    public void deleteServiceFromWorkshop(Long workshopId, String serviceName, Double price) {
+
+        Workshop workshop = workshopRepo.findById(workshopId)
+                .orElseThrow(() -> new IllegalStateException("Workshop with id" + workshopId + "does not exist"));
+
+        com.example.diplomaupdated.model.Service service = serviceRepo.findByName(serviceName)
+                .orElseThrow(() -> new IllegalStateException("Service " + serviceName + "does not exist"));
+
+        List<com.example.diplomaupdated.model.WorkshopService> all = workshopServiceRepo.findAll();
+
+        Long id = null;
+
+        for (com.example.diplomaupdated.model.WorkshopService obj: all){
+            if(obj.getService().getName().equals(serviceName) && obj.getWorkshop().getId().equals(workshopId))
+                id = obj.getId();
+        }
+        workshopServiceRepo.deleteById(id);
+//        com.example.diplomaupdated.model.WorkshopService workshopService = new com.example.diplomaupdated.model.WorkshopService();
+//
+//        workshopService.setWorkshop(workshop);
+//        workshopService.setService(service);
+//        workshopService.setPrice(price);
+//
+//        workshopServiceRepo.delete(workshopService);
     }
 
     @Override
