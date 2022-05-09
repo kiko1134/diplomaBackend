@@ -8,7 +8,6 @@ import com.example.diplomaupdated.repo.*;
 import com.example.diplomaupdated.service.WorkshopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -143,13 +142,6 @@ public class WorkshopServiceImpl implements WorkshopService {
                 id = obj.getId();
         }
         workshopServiceRepo.deleteById(id);
-//        com.example.diplomaupdated.model.WorkshopService workshopService = new com.example.diplomaupdated.model.WorkshopService();
-//
-//        workshopService.setWorkshop(workshop);
-//        workshopService.setService(service);
-//        workshopService.setPrice(price);
-//
-//        workshopServiceRepo.delete(workshopService);
     }
 
     @Override

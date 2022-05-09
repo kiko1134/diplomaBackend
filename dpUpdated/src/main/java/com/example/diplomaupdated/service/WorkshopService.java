@@ -2,7 +2,6 @@ package com.example.diplomaupdated.service;
 
 import com.example.diplomaupdated.DTO.WorkshopDto;
 import com.example.diplomaupdated.model.Workshop;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

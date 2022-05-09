@@ -11,8 +11,8 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    private String jwtSecret = "secret";
-    private int expiration = 86400000;
+    private final String jwtSecret = "secret";
+    private final int expiration = 86400000;
 
     public String generateJwtToken(Authentication authentication) {
         Account principal = (Account) authentication.getPrincipal();

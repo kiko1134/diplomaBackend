@@ -9,7 +9,6 @@ import com.example.diplomaupdated.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -128,8 +127,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalStateException("does not exists user with id: " + userId));
-        return user;
+        return userRepo.findById(userId).orElseThrow(() -> new IllegalStateException("does not exists user with id: " + userId));
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.diplomaupdated.service.impl;
 
-import com.example.diplomaupdated.DTO.ReviewDto;
 import com.example.diplomaupdated.model.Review;
 import com.example.diplomaupdated.model.User;
 import com.example.diplomaupdated.model.Workshop;
@@ -35,7 +34,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         Optional<User> user = userRepo.findById(user_id);
         if(user.isEmpty()){
-            throw new IllegalStateException("greshka");
+            throw new IllegalStateException("No such user");
         }
 
 
@@ -52,7 +51,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         Optional<Workshop> workshop = workshopRepo.findById(workshop_id);
         if(workshop.isEmpty()){
-            throw new IllegalStateException("greshka");
+            throw new IllegalStateException("No such workshop");
         }
 
 

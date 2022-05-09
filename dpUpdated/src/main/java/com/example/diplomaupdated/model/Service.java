@@ -29,9 +29,6 @@ public class Service {
     private Long id;
     private String name;
 
-//    @ManyToMany(mappedBy = "favoriteServices")
-//    Set<User> userFavorites;
-
     @JsonIgnore
     @OneToMany(mappedBy = "service")
     Set<WorkshopService> workshopService;

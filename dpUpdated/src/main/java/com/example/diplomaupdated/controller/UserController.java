@@ -3,7 +3,6 @@ package com.example.diplomaupdated.controller;
 
 import com.example.diplomaupdated.DTO.FavoriteServiceDto;
 import com.example.diplomaupdated.DTO.RequestCustomerDto;
-import com.example.diplomaupdated.DTO.UserDto;
 import com.example.diplomaupdated.model.User;
 import com.example.diplomaupdated.service.RoleService;
 import com.example.diplomaupdated.service.UserService;

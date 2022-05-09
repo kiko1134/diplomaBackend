@@ -1,10 +1,8 @@
 package com.example.diplomaupdated.controller;
 
 
-import com.example.diplomaupdated.DTO.GetServiceWorkshopDto;
 import com.example.diplomaupdated.DTO.ServiceCreateDto;
 import com.example.diplomaupdated.model.Service;
-import com.example.diplomaupdated.repo.ServiceRepo;
 import com.example.diplomaupdated.service.ServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
